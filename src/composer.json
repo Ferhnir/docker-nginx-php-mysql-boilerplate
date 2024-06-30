@@ -1,0 +1,17 @@
+{
+  "name": "bhp/project",
+  "autoload": {
+      "psr-4": {
+          "Cherif\\SlimFromScratch\\": "src/"
+      }
+  },
+  "authors": [
+      {
+          "name": "Cherif BOUCHELAGHEM",
+          "email": "cherif.bouchelaghem@gmail.com"
+      }
+  ],
+  "require": {
+    "slim/slim": "^4.8"
+  }
+}
