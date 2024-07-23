@@ -1,2 +1,2 @@
-./docker/mysql/
-./src/vendor
+docker/mysql/
+src/vendor
