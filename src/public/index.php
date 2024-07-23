@@ -1,3 +1,3 @@
 <?php
-
-echo 'test';
+require("../app/View/supa.php");
+echo '1111';
