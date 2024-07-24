@@ -31,6 +31,15 @@ services:
       - ./docker/mysql:/var/lib/mysql
     networks:
       - internal
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    networks:
+      - internal
 
 networks:
   internal:

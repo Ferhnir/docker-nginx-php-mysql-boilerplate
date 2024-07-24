@@ -1,34 +1,31 @@
 <?php
 
-$servername = "127.0.0.1";
+$servername = "db";
+$dbName = "bhp_project";
 $username = "root";
 $password = "root";
 
-$conn = mysqli_connect($servername, $username, $password);
+$pdo = new PDO("mysql:host=db;dbname=$dbName", $username, $password);
+$pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-  echo "Connected successfully";
+// $conn = new mysqli($servername, $username, $password, $dbName);
 
-class calculation {
-    private $result;
-    
-    public function multiply($a, $b) {
-        $this->result = $a * $b;
-    }
-    
-    public function multiplyByTwo() {
-        $this->result *= 2;
-    }
+// if ($conn->connect_error){
+    // die("Connection FAILED");
+// }
 
-    public function getResult() {
-        return $this->result;
-    }
+// $sql = "SELECT * FROM users";
+
+// $data = $conn->query($sql)->exe;
+
+$data = $pdo->query("SELECT * FROM users");
+
+
+foreach ($data as $row) {
+    echo $row['first_name'] . PHP_EOL;
 }
 
-$multiplier = new calculation();
-$multiplier->multiply(3, 4); 
-$multiplier->multiplyByTwo(); 
-echo $multiplier->getResult();
+// $conn->close();
+// $pdo = new PDO("mysql:host=localhost;dbname=bhp_project", 'root', 'root');
+// $pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
 ?>
