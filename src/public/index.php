@@ -1,3 +1,2 @@
 <?php
-
-echo 'test';
+require("../app/view/supa.php");
