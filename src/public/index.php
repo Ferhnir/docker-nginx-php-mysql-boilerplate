@@ -1,2 +1,3 @@
 <?php
-require("../app/view/supa.php");
+
+require("../app/view/register.php");

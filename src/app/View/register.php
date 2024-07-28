@@ -9,7 +9,7 @@
 <body>
     <div class="registration-container">
         <h2>Register</h2>
-        <form id="registrationForm">
+        <form id="registrationForm" action="includes/register.inc.php">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
@@ -40,4 +40,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html>z    	
+</html>

@@ -22,10 +22,9 @@ $data = $pdo->query("SELECT * FROM users");
 
 
 foreach ($data as $row) {
-    echo $row['first_name'] . PHP_EOL;
+    echo $row['last_name'] . PHP_EOL;
 }
 
 // $conn->close();
 // $pdo = new PDO("mysql:host=localhost;dbname=bhp_project", 'root', 'root');
 // $pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
-?>
