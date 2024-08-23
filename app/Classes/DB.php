@@ -47,7 +47,7 @@ class DB
 
   public function find(mixed $value, string $column = 'id')
   {
-    $query = $this->query->prepare("SELECT * FROM " . statis::$tableName . " WHERE " . $column . " = :"  . $column);
+    $query = $this->query->prepare("SELECT * FROM " . static::$tableName . " WHERE " . $column . " = :"  . $column);
     $query->bindParam($column, $value);
     $query->execute();
 
