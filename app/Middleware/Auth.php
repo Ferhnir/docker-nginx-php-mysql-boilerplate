@@ -9,13 +9,13 @@ class Auth
   public function checkToken()
   {
     if (!isset($_SESSION['_accessToken'])){
-      header('Location: /login');
-      exit;
+      return false;
     }
 
     if (!(new User())->find($_SESSION["_accessToken"], 'token')){
-      header('Location: /login');
-      exit;
+      return false;
     }
+
+    return true;
   }
 }

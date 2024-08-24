@@ -8,6 +8,6 @@ class LoginController
 {
     public function login()
     {
-        return include_once(base() . '/View/login.php');
+        return include_once(base() . '/View/Auth/login.php');
     }
 }

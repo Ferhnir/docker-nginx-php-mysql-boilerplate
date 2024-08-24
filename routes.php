@@ -3,15 +3,33 @@
 require_once __DIR__ . '/router.php';
 
 get('/', function() {
-  (new App\Middleware\Auth())->checkToken();
-
+  authenticate();
   return include('app/View/index.php');
 });
 
-get('/approvals/new', function() {
+//HAZARD DOCUMENTS
+get('/hazard-documents', function(){
+  authenticate();
+  return (new App\Controllers\HazardDocumentController())->index();
+});
 
-  return include('app/View/newApproval.php');
+get('/hazard-documents/create', function() {
+  authenticate();
+  return (new App\Controllers\HazardDocumentController())->create();
+});
 
+post('/hazard-documents/create', function() {
+  authenticate();
+  return (new App\Controllers\HazardDocumentController())->store($_POST);
+});
+
+get('/hazard-documents/$doc', 'app/View/HazardDocuments/show.php');
+
+//HAZARDS
+get('/hazards/create', 'app/View/Hazards/create.php');
+post('/hazards', function(){
+  authenticate();
+  return (new App\Controllers\HazardController())->store($_POST);
 });
 
 /*
@@ -36,3 +54,12 @@ get('/logout', function(){
  * Register
  */
 get('/register', '/app/register');
+
+
+function authenticate()
+{
+  if (!(new App\Middleware\Auth())->checkToken()){
+    header('Location: /login');
+    exit;
+  }
+}
