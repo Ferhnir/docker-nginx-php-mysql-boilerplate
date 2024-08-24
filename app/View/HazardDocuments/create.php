@@ -205,37 +205,37 @@ $(function() {
   //TOOlS
   $('#new-tool-btn').on('click', () => {
 
-    let jobDescElements = $('#tools-list').find('.tools-list');
-    let newElement = '<div class="mb-3 row tools-list">';
+    let toolsElements = $('#tools-list').find('.tools-list');
+    let newTool = '<div class="mb-3 row tools-list">';
 
-    newElement += '<label for="date" class="col-sm-1 col-form-label text-center" value="' + jobDescElements.length++ + '">' + jobDescElements.length++  + '</label>';
-    newElement += '<div class="col-sm-11"><input type="text" class="form-control" name="tools[]" value=""></div></div>';
+    newTool += '<label for="date" class="col-sm-1 col-form-label text-center" value="' + toolsElements.length++ + '">' + toolsElements.length++  + '</label>';
+    newTool += '<div class="col-sm-11"><input type="text" class="form-control" name="tools[]" value=""></div></div>';
 
-    $('#tools-list').append(newElement);
+    $('#tools-list').append(newTool);
   });
 
   //MATERIALS
   $('#new-material-btn').on('click', () => {
 
-    let jobDescElements = $('#materials-list').find('.materials-list');
-    let newElement = '<div class="mb-3 row materials-list">';
+    let materialElements = $('#materials-list').find('.materials-list');
+    let newMaterial = '<div class="mb-3 row materials-list">';
 
-    newElement += '<label for="date" class="col-sm-1 col-form-label text-center" value="' + jobDescElements.length++ + '">' + jobDescElements.length++  + '</label>';
-    newElement += '<div class="col-sm-11"><input type="text" class="form-control" name="job_description[]" value=""></div></div>';
+    newMaterial += '<label for="date" class="col-sm-1 col-form-label text-center" value="' + materialElements.length++ + '">' + materialElements.length++  + '</label>';
+    newMaterial += '<div class="col-sm-11"><input type="text" class="form-control" name="materials[]" value=""></div></div>';
 
-    $('#materials-list').append(newElement);
+    $('#materials-list').append(newMaterial);
   });
 
   //CHEMICALS
   $('#new-chemical-btn').on('click', () => {
 
-    let jobDescElements = $('#chemicals-list').find('.chemicals-list');
-    let newElement = '<div class="mb-3 row chemicals-list">';
+    let chemicalsElements = $('#chemicals-list').find('.chemicals-list');
+    let newChemical = '<div class="mb-3 row chemicals-list">';
 
-    newElement += '<label for="date" class="col-sm-1 col-form-label text-center" value="' + jobDescElements.length++ + '">' + jobDescElements.length++  + '</label>';
-    newElement += '<div class="col-sm-11"><input type="text" class="form-control" name="job_description[]" value=""></div></div>';
+    newChemical += '<label for="date" class="col-sm-1 col-form-label text-center" value="' + chemicalsElements.length++ + '">' + chemicalsElements.length++  + '</label>';
+    newChemical += '<div class="col-sm-11"><input type="text" class="form-control" name="chemicals[]" value=""></div></div>';
 
-    $('#chemicals-list').append(newElement);
+    $('#chemicals-list').append(newChemical);
   });
 
 });
