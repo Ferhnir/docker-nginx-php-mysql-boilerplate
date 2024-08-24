@@ -31,7 +31,6 @@
               echo '<td>Awaiting</td>';
               echo '<td>';
                 echo '<a href="/hazard-documents/' . $hazardDocument->id . '" class="btn btn-warning mx-1">Show</a>';
-                echo '<a href="/hazard-documents/' . $hazardDocument->id . '/delete" class="btn btn-danger mx-1">Delete</a>';
               echo '</td>';
             echo '</tr>';
           }
