@@ -1,0 +1,12 @@
+{
+    "require": {
+        "larapack/dd": "1.*",
+        "vlucas/phpdotenv": "^5.6",
+        "nesbot/carbon": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
