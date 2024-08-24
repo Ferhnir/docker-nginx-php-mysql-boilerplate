@@ -53,7 +53,7 @@
                   <label for="formGroupExampleInput" class="form-label">Resaults</label>
                   <select id="resaultSelection" class="form-select" name="hazard_resault_id">
                     <option selected>Choose...</option>
-                    <?php foreach($resaults as $reault) { echo '<option value="' . $reault->id . '">(' . $reault->strengh . ') ' . $reault->name . "</option>"; } ?>
+                    <?php foreach($resaults as $reault) { echo '<option data-value="'. $reault->strengh .'" value="' . $reault->id . '">(' . $reault->strengh . ') ' . $reault->name . "</option>"; } ?>
                   </select>
                 </div>
               </div>
@@ -62,7 +62,7 @@
                   <label for="formGroupExampleInput" class="form-label">Exposure</label>
                   <select id="exposureSelection" class="form-select" name="hazard_exposure_id">
                     <option selected>Choose...</option>
-                    <?php foreach($exposures as $exposure) { echo '<option value="' . $exposure->id . '">(' . $exposure->strengh . ') ' . $exposure->name . "</option>"; } ?>
+                    <?php foreach($exposures as $exposure) { echo '<option data-value="'. $exposure->strengh .'" value="' . $exposure->id . '">(' . $exposure->strengh . ') ' . $exposure->name . "</option>"; } ?>
                   </select>
                 </div>
               </div>
@@ -71,7 +71,7 @@
                   <label for="formGroupExampleInput" class="form-label">Probability</label>
                   <select id="probabilitySelection" class="form-select" name="hazard_probability_id">
                     <option selected>Choose...</option>
-                    <?php foreach($probabilities as $probability) { echo '<option value="' . $probability->id . '">(' . $probability->strengh . ') ' . $probability->name . "</option>"; } ?>
+                    <?php foreach($probabilities as $probability) { echo '<option data-value="'. $probability->strengh .'" value="' . $probability->id . '">(' . $probability->strengh . ') ' . $probability->name . "</option>"; } ?>
                   </select>
                 </div>
               </div>
@@ -111,25 +111,30 @@
     let totalScore = 0;
 
     $("#resaultSelection").on( "change", function() {
-      resaultScore = this.value;
+      resaultScore = $(this).find('option:selected').data('value');
       caucluateScore();
     });
 
     $("#exposureSelection").on( "change", function() {
-      exposureScore = this.value;
+      exposureScore = $(this).find('option:selected').data('value');
       caucluateScore();
     });
 
     $("#probabilitySelection").on( "change", function() {
-      probabilityScore = this.value;
+      probabilityScore = $(this).find('option:selected').data('value');
       caucluateScore();
     });
 
     function caucluateScore()
     {
+
+      console.log([ resaultScore, exposureScore, probabilityScore]);
+
       totalScore = resaultScore * exposureScore * probabilityScore;
 
       if (totalScore > 0){
+
+        console.log(totalScore);
 
         if (totalScore < 20){
           $('body').removeClass().addClass('bg-success');

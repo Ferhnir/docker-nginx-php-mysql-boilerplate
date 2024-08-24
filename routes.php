@@ -27,6 +27,9 @@ get('/hazard-documents/$doc', 'app/View/HazardDocuments/show.php');
 
 //HAZARDS
 get('/hazards/create', 'app/View/Hazards/create.php');
+
+get('/hazards/$hazard', 'app/View/Hazards/show.php');
+
 post('/hazards', function(){
   authenticate();
   return (new App\Controllers\HazardController())->store($_POST);

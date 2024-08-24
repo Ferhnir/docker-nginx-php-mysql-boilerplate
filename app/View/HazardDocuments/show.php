@@ -17,6 +17,20 @@
   $materials = json_decode($hazardDocument->materials);
   $chemicals = json_decode($hazardDocument->chemicals);
 
+  //HAZARD
+
+
+
+  function loadCardColor(float $score = 0){
+    return match (true){
+      ($score < 20) => 'text-bg-success',
+      ($score >= 20 && $score < 70) => 'text-bg-primary',
+      ($score >= 70 && $score < 200) => 'text-bg-warning',
+      ($score >= 200 && $score < 400) => 'text-bg-danger',
+      ($score > 400) => 'text-bg-dark',
+    };
+  }
+
   //HAZARDS
   // $hazards = (new App\Models\Hazard())->getByDocument($hazardDocument->id);
 ?>
@@ -149,19 +163,51 @@
 
     <div class="row my-3">
       <div class="col-12">
-        <h3>Hazards:</h3>
+        <h3>Possible hazards:</h3>
 
         <div class="row">
           <div class="col-12">
 
-            <div class="card" style="width: 18rem;">
+            <div class="row">
+
+            <?php
+
+              $hazards = \App\Models\Hazard::getByDocument($hazardDocument->id);
+
+              foreach($hazards as $hazard){
+
+                $hazardResault = \App\Models\HazardResault::find($hazard->hazard_resault_id);
+                $hazardExposure = \App\Models\HazardExposure::find($hazard->hazard_exposure_id);
+                $hazardProbability = \App\Models\HazardProbability::find($hazard->hazard_probability_id);
+
+                $score = $hazardResault->strengh * $hazardExposure->strengh * $hazardProbability->strengh;
+
+                echo ' <div class="col-sm-12 col-md-3 col-3">';
+                  echo '<div class="card '. loadCardColor($score) . ' m-3">';
+                    echo '<div class="card-body">';
+                      echo '<h5 class="card-title">Hazard</h5>';
+                      echo '<p class="card-text">Click button below to see details</p>';
+                      echo '<a href="/hazards/' . $hazard->id . '" class="btn btn-primary">Show</a>';
+                    echo '</div>';
+                  echo '</div>';
+                echo '</div>';
+              }
+
+            ?>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="card m-3">
               <div class="card-body">
                 <h5 class="card-title">Add HAzard</h5>
                 <p class="card-text">Add Hazard by filling a form. System will calculate and score it for you and warn if that going be serious.</p>
-                <a href="/hazards/create?hazardDocumentID=<?php echo $doc; ?>" class="btn btn-primary">Fill new Form</a>
+                <a href="/hazards/create?hazardDocumentID=<?php echo $doc; ?>" class="btn btn-success">Add</a>
               </div>
             </div>
-
           </div>
         </div>
 

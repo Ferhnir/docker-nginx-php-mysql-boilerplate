@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Classes\DB;
+use PDO;
 
 class Hazard extends DB
 {
@@ -13,16 +14,26 @@ class Hazard extends DB
     parent::__construct(static::$tableName);
   }
 
-  public function getByDocument(int $hazardDocumentID)
+  public static function getByDocument(int $hazardDocumentID)
   {
-   $sql = 'SELECT * FROM ' . static::$tableName;
-   $sql .= ' WHERE hazard_document_id = :hazard_document_id';
+    $host = static::$host;
+    $dbName = static::$dbName;
 
-   $query = $this->query->prepare($sql);
-   $query->bindParam('hazard_document_id', $hazardDocumentID);
-   $query->execute();
+    $pdo = new PDO(
+      "mysql:host=$host;dbname=$dbName",
+      static::$user,
+      static::$password
+    );
 
-   return $query->fetchAll();
+    $sql = 'SELECT * FROM ' . static::$tableName;
+    $sql .= ' WHERE hazard_document_id = :hazard_document_id';
+
+    $query = $pdo->prepare($sql);
+
+    $query->bindParam('hazard_document_id', $hazardDocumentID);
+    $query->execute();
+
+    return $query->fetchAll(PDO::FETCH_CLASS);
   }
 
   public function store(
