@@ -31,4 +31,47 @@ class User extends DB
 
     return $query->fetchObject();
   }
+
+  public function store(
+    string $firstName,
+    string $lastName,
+    string $email,
+    string $password
+  ){
+    $sql = 'INSERT INTO ' . static::$tableName;
+    $sql .= ' (first_name, last_name, email, password)';
+    $sql .= ' VALUES (:first_name, :last_name, :email, :password)';
+
+    try {
+      $this->query->beginTransaction();
+
+      $query = $this->query->prepare($sql);
+
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+      $query->bindParam('first_name', $firstName);
+      $query->bindParam('last_name', $lastName);
+      $query->bindParam('email', $email);
+      $query->bindParam('password', $hashedPassword);
+
+      $success = $query->execute();
+
+      $hazardID = $this->query->lastInsertId();
+
+      $this->query->commit();
+
+      return [
+        $success,
+        $hazardID,
+        'User created successfully'
+      ];
+
+    } catch (Exception $e) {
+      return [
+        'false',
+        0,
+        $e->getMessage()
+      ];
+    }
+  }
 }

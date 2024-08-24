@@ -10,4 +10,9 @@ class LoginController
     {
         return include_once(base() . '/View/Auth/login.php');
     }
+
+    public function register()
+    {
+        return include_once(base() . '/View/Auth/register.php');
+    }
 }

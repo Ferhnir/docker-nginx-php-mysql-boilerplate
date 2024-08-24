@@ -74,7 +74,7 @@ class Hazard extends DB
       return [
         $success,
         $hazardID,
-        'Document created successfully'
+        'Hazard created successfully'
       ];
 
     } catch (Exception $e) {
