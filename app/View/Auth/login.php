@@ -2,6 +2,13 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-6">
+            <?php
+
+            if($_GET && isset($_GET['error'])){
+                echo '<div class="alert alert-danger mt-5" role="alert">' . $_GET["error"] . '</div>';
+            }
+
+            ?>
                 <div class="card mt-5">
                     <div class="card-header">
                         Login:

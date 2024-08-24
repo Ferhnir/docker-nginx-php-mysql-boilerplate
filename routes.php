@@ -56,8 +56,13 @@ get('/logout', function(){
 /*
  * Register
  */
-get('/register', '/app/register');
+get('/register', function(){
+  return (new App\Controllers\LoginController())->register();
+});
 
+post('/register', function(){
+  return (new App\Controllers\AuthController())->register($_POST);
+});
 
 function authenticate()
 {
